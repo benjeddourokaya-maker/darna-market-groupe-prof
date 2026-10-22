@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net" version="22.0.0">
+  <diagram name="Architecture Darna D" id="arch-darna">
+    <mxGraphModel dx="1422" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="Acteurs" style="text;html=1;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="100" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="client" value="Client&#10;(Tunisie,&#10;Zaghouane)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="gest" value="Gestionnaire&#10;Roukaya" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="transp" value="Transporteur&#10;Aramex / MyExpress" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="210" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="banque" value="Banque /&#10;Passerelle&#10;ClicToPay / Konnect" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="290" width="90" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="titreVitrine" value="COUCHE 1 : VITRINE (Client voit)" style="text;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="20" width="200" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="vitrine" value="Vitrine WordPress + WooCommerce&#10;Thème + 3 produits Darna&#10;localhost:8080" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="200" y="50" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="titreAdmin" value="COUCHE 2 : ADMINISTRATION" style="text;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="200" y="140" width="200" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="admin" value="Admin /wp-admin&#10;Gestion stock unique&#10;Commandes, clients&#10;Click&amp;Collect" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="200" y="165" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="titreServices" value="COUCHE 3 : SERVICES &amp; DONNEES" style="text;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="250" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="db" value="Base de données&#10;MariaDB: darna&#10;Tables: commandes, produits, clients&#10;Volume db_data" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;" vertex="1" parent="1">
+          <mxGeometry x="500" y="50" width="200" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="paiement" value="Service Paiement&#10;Module ClicToPay (API/Module)&#10;Module Konnect (API)&#10;Dossier: RC, MF, CGV" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="200" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="transport" value="Service Transport&#10;API Aramex / MyExpress&#10;Calcul frais 6TND&#10;Suivi colis" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;" vertex="1" parent="1">
+          <mxGeometry x="500" y="250" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="whatsapp" value="Service Relation&#10;WhatsApp Business&#10;SAV &lt;1h, fidélité" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;" vertex="1" parent="1">
+          <mxGeometry x="750" y="50" width="150" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux1" value="1. HTTPS&#10;Navigateur -> Vitrine&#10;Affichage produits" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="client" target="vitrine">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux2" value="2. HTTPS&#10;Gestionnaire -> /wp-admin&#10;CRUD produits/stock" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" edge="1" parent="1" source="gest" target="admin">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux3" value="3. SQL&#10;Vitrine/Admin -> DB&#10;SELECT/INSERT commandes" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" edge="1" parent="1" source="vitrine" target="db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux4" value="4. API ClicToPay&#10;Module Woo -> Passerelle&#10;Demande paiement&#10;Point sensible ROUGE" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#FF0000;fontColor=#FF0000;" edge="1" parent="1" source="vitrine" target="paiement">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux5" value="5. Webhook&#10;Passerelle -> Boutique&#10;Confirmation paiement&#10;Point sensible ROUGE&#10;Sécuriser signature" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;strokeColor=#FF0000;fontColor=#FF0000;" edge="1" parent="1" source="banque" target="paiement">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux6" value="6. API Transport&#10;Boutique -> Aramex&#10;Création bon livraison" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" edge="1" parent="1" source="vitrine" target="transport">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="flux7" value="7. API WhatsApp&#10;Commande prête -> Client&#10;Click&amp;Collect Zaghouane" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" edge="1" parent="1" source="admin" target="whatsapp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="legende" value="LEGENDE:&#10;Rouge = Point sensible (paiement, mdp, données perso) à sécuriser&#10;Flux numérotés = ordre logique commande&#10;Variante D: 70% flux vers Click&amp;Collect magasin (pas de transport), 30% livraison Aramex" style="text;html=1;whiteSpace=wrap;align=left" vertex="1" parent="1">
+          <mxGeometry x="200" y="360" width="700" height="60" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

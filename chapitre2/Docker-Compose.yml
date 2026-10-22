@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: darna
+      MARIADB_USER: darna
+      MARIADB_PASSWORD: ChangeMe!
+      MARIADB_ROOT_PASSWORD: ChangeMe2!
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: darna
+      WORDPRESS_DB_PASSWORD: ChangeMe!
+      WORDPRESS_DB_NAME: darna
+    depends_on:
+      - db
+
+volumes:
+  db_data:
